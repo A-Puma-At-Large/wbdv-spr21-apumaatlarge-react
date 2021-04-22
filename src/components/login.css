@@ -1,0 +1,33 @@
+.container-login {
+    /*margin-top: 8%;*/
+    width: 60%;
+    height: 80%;
+    margin-bottom: 10%;
+    position: relative;
+
+}
+
+img {
+    border-radius: 50%;
+    overflow: hidden;
+    position: center;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.login-image {
+    margin-left: 50%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-title {
+    margin-left: 16%;
+    margin-bottom: 5%;
+    text-align: center;
+}
+.col-home {
+    text-align: right;
+}
