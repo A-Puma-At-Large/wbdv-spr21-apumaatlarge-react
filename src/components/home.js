@@ -1,13 +1,19 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, Route} from 'react-router-dom'
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
 import Search from "./search";
 import PopularArtworks from "./popular-artworks";
 import artworkReducer from "../reducers/artwork-reducer";
 import ArtworkDetails from "./artwork-details";
+import userReducer from "../reducers/user-reducer";
+import Register from "./register";
+import Login from "./login";
 
-const reducer = combineReducers({artworkReducer: artworkReducer})
+const reducer = combineReducers({
+  userReducer : userReducer,
+  artworkReducer: artworkReducer
+})
 
 const store = createStore(reducer)
 
@@ -25,13 +31,15 @@ const Home = () => {
               <Search/>
             </div>
             <div className={"col-2"}>
-              {/*<button>Register</button>*/}
-              <Link to="/register" className="btn btn-outline-primary float-right">
-                Register
-              </Link>
-              <Link to="/login" className="btn btn-outline-primary float-right">
-                Sign in
-              </Link>
+              <div className={"row"}>
+                  <Link to="/register" className="btn btn-outline-primary float-right">
+                    Register
+                  </Link>
+
+                  <Link to="/login" className="btn btn-outline-primary float-right">
+                    Sign in
+                  </Link>
+            </div>
             </div>
             {/*<div className={"col-2"}>*/}
             {/*  */}

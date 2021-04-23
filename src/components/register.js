@@ -5,10 +5,14 @@ import {connect} from 'react-redux';
 import userService from "../services/user-service"
 
 const Register = (
-    {    createUser,
+    {   createUser,
         updateUser,
         deleteUser
     }) => {
+    const [cachedItem, setCachedItem] = useState(
+        {username: "username",
+        password : "password",
+        role :"user"})
 
     return (
         <div className="container-fluid container-login">
@@ -31,8 +35,14 @@ const Register = (
                 <div className="col-sm-10">
                     <input type="text"
                            className="form-control"
-                           placeholder="jhzhang.523@gmail.com"
-                           id="username"
+                           placeholder="username"
+                           // id="username"
+                           onChange={(e) =>{
+                               setCachedItem({
+                                   ...cachedItem,
+                                   username: e.target.value
+                               })}}
+                           value={cachedItem.username}
                     />
                 </div>
             </div>
@@ -43,19 +53,31 @@ const Register = (
                 <div className="col-sm-10">
                     <input type="password"
                            className="form-control"
-                           id="password"
+                           // id="password"
+                           onChange={(e) =>{
+                               setCachedItem({
+                                   ...cachedItem,
+                                   password: e.target.value
+                               })}}
+                           value={cachedItem.password}
                     />
                 </div>
             </div>
 
             <div className="mb-3 row">
                 <label className="col-sm-2 col-form-label">
-                    Verify Password
+                    Email Address
                 </label>
                 <div className="col-sm-10">
-                    <input type="password"
+                    <input type="email"
                            className="form-control"
-                           id="password"
+                           // id="password"
+                           onChange={(e) =>{
+                               setCachedItem({
+                                   ...cachedItem,
+                                   email: e.target.value
+                               })}}
+                           value={cachedItem.email}
                     />
                 </div>
             </div>
@@ -64,8 +86,14 @@ const Register = (
                 <label className="col-sm-2 col-form-label">
                 </label>
                 <div className="col-sm-10">
-                    <a className="btn btn-primary btn-block"
-                       href="">Sign in</a>
+
+                    <button type="button"
+                            className="btn btn-primary btn-block"
+                            onClick={() => {
+                                let newUser = {...cachedItem, role: "User"}
+                                console.log(newUser)
+                                createUser(newUser)
+                               }}>Login</button>
                     <div className="row">
                         <Link to="/login" className="col">
                             Login
@@ -76,7 +104,6 @@ const Register = (
                     </div>
                 </div>
             </div>
-
         </div>)
 }
 

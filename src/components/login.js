@@ -2,33 +2,20 @@ import React, {useState} from 'react'
 import "./login.css"
 import {Link} from "react-router-dom";
 import userService from "../services/user-service"
-import {combineReducers, createStore} from "redux";
-import {Provider} from "react-redux";
-import userReducer from "../reducers/user-reducer";
-import artworkReducer from "../reducers/artwork-reducer";
+import {connect} from "react-redux";
 
-const reducer = combineReducers({
-    userReducer : userReducer,
-    artworkReducer : artworkReducer
-})
 
-const store = createStore(reducer)
+
 
 const Login = (
-    {   to="/",
-        deleteItem,
-        updateItem,
-        item,
-        active
-    }) => {
-    const [userLogin, setUserLogin] = useState(false)
-    const [q, setAdminLogin] = useState(false)
+    {}) => {
+
     const [cachedItem, setCachedItem] = useState({username: "username",
                                                             password : "password",
                                                             role :"user"})
-    return (
 
-        <Provider store={store}>
+    const[user, setUser] = useState({})
+    return (
         <div className="container-fluid container-login">
 
         <br/>
@@ -104,9 +91,10 @@ const Login = (
                         className="btn btn-primary btn-block"
                         onClick={() => {
                             if (cachedItem.role === "Admin"){
+                                console.log(cachedItem)
                                 userService.authenticateAdmin(cachedItem).then(
                                     (isValid => {
-                                        if (!isValid){
+                                        if (isValid === 0){
                                             alert("Admin Login, please check your username or password")
                                         } else {
                                             // jump to homepage
@@ -114,16 +102,17 @@ const Login = (
                                         }
                                     }))
                             }else if (cachedItem.role === "User") {
+                                console.log(cachedItem)
                                 userService.authenticateUser(cachedItem).then(
                                     (isValid => {
-                                        if (!isValid) {
+                                        if (isValid === 0) {
                                             alert("The password or the Username is not correct!")
                                         } else{
                                             //jump to homepage
                                             alert("Logged in")
+                                            userService.findUserByUserName(cachedItem.username).then(user =>
+                                            setUser(user))
                                         }
-
-                                        setUserLogin(isValid)
                                     }))
                             }}}>Login</button>
 
@@ -137,8 +126,25 @@ const Login = (
                 </div>
             </div>
         </div>
-    </div>
-    </Provider>)
+    </div>)
 
 }
-export default Login
+
+
+const stpm = (state) => {
+    return {
+    }
+}
+const dtpm = (dispatch) => {
+    return {
+        findUserByUserName: (username) => {
+            userService.findUserByUserName(username)
+                .then(user => dispatch({
+                    type: "FIND_USER_BY_USERNAME",
+                    user: user
+                }))
+        }
+    }
+}
+
+export default connect(stpm, dtpm)(Login)
