@@ -3,9 +3,31 @@ const ADMIN_LOGIN = "http://localhost:8080/api/login/admin"
 const FIND_ALL_USER = "http://localhost:8080/api/find/users"
 const USER_URL = "http://localhost:8080/api/users/"
 
-const authenticateUser = (user) => fetch(USER_LOGIN).then(res => res.json())
+const authenticateUser = (user) => fetch(USER_LOGIN, {
+    method: 'POST',
+    headers: {
+        'content-type': 'application/json'
+    },
+    body: JSON.stringify(user)
+}).then(response => {
+    if (response.status === 400)
+        return -1
+    return response.json()
+}).catch().then(err => console.log(err))
 
-const authenticateAdmin = (admin) => fetch(ADMIN_LOGIN).then(res => res.json())
+
+const authenticateAdmin = (admin) => fetch(ADMIN_LOGIN,{
+    method: 'POST',
+    headers: {
+        'content-type': 'application/json'
+    },
+    body: JSON.stringify(admin)
+}).then(response => {
+    if (response.status === 400)
+        return -1
+    return response.json()
+}).catch().then(err => console.log(err))
+
 
 const findUserById = (userId) => fetch(`${USER_URL}/${userId}`).then(response => response.json())
 

@@ -40,10 +40,8 @@ const Home = () => {
           <div className={"row"}>
             <PopularArtworks page={1} limit={12}/>
           </div>
-
         </div>
       </Provider>
-
   )
 }
 

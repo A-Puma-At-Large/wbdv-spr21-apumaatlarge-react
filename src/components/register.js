@@ -1,16 +1,15 @@
 import React, {useState} from 'react'
 import "./login.css"
 import {Link} from "react-router-dom";
+import {connect} from 'react-redux';
+import userService from "../services/user-service"
 
 const Register = (
-    {   to="/",
-        deleteItem,
-        updateItem,
-        item,
-        active
+    {    createUser,
+        updateUser,
+        deleteUser
     }) => {
-    // const [editing, setEditing] = useState(false)
-    const [cachedItem, setCachedItem] = useState({title: ""})
+
     return (
         <div className="container-fluid container-login">
 
@@ -80,4 +79,34 @@ const Register = (
 
         </div>)
 }
-export default Register
+
+const stpm = (state) => {
+    return {}
+}
+
+const dtpm = (dispatch) => {
+    return {
+        createUser: (user) => {
+            userService.createUser(user)
+                .then(user => dispatch({
+                    type: "CREATE_USER",
+                    user: user
+                }))
+        },
+
+        deleteUser: (user) =>
+            userService.deleteUser(user.id)
+                .then(status => dispatch({
+                    type: "DELETE_User",
+                    userToDelete: user
+                })),
+        updateUser: (user) =>
+            userService.updateUser(user)
+                .then(user => dispatch({
+                    type: "UPDATE_user",
+                    updatedUser : user
+                })),
+    }
+}
+
+export default connect(stpm, dtpm)(Register)

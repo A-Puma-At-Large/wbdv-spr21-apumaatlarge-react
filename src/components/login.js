@@ -106,15 +106,23 @@ const Login = (
                             if (cachedItem.role === "Admin"){
                                 userService.authenticateAdmin(cachedItem).then(
                                     (isValid => {
-                                        if (!isValid)
-                                            alert("The password or the Username is not correct!")
-                                        setAdminLogin(isValid)
+                                        if (!isValid){
+                                            alert("Admin Login, please check your username or password")
+                                        } else {
+                                            // jump to homepage
+                                            alert("Logged in as admin")
+                                        }
                                     }))
                             }else if (cachedItem.role === "User") {
                                 userService.authenticateUser(cachedItem).then(
                                     (isValid => {
-                                        if (!isValid)
+                                        if (!isValid) {
                                             alert("The password or the Username is not correct!")
+                                        } else{
+                                            //jump to homepage
+                                            alert("Logged in")
+                                        }
+
                                         setUserLogin(isValid)
                                     }))
                             }}}>Login</button>
@@ -131,5 +139,6 @@ const Login = (
         </div>
     </div>
     </Provider>)
+
 }
 export default Login
