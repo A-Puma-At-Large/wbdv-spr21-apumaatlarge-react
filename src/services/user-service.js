@@ -42,14 +42,17 @@ const createUser = (user) =>
     }).then(response => response.json())
 
 
-const updateUser = (user) =>
-    fetch(USER_URL, {
+const updateUser = (user) => {
+
+    console.log("updating user", user)
+    return fetch(`${USER_URL}/${user.id}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json'
       },
       body: JSON.stringify(user)
     }).then(response => response.json())
+}
 
 
 const deleteUser = (userId) =>
