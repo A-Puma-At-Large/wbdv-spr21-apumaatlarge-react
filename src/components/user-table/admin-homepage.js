@@ -48,7 +48,6 @@ const AdminHomepage = (
             <tbody>
 
             {users.map(user =>
-
                     <EditableItem
                         updateUser={updateUser}
                         deleteItem={deleteUser}

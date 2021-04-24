@@ -54,9 +54,12 @@ function App() {
               <ArtworkReviewList />
             </Route>
             <Route exact={true} path={[
-                "/home/admin",
-            ]}>
+                "/home/admin",]}>
               <AdminHomepage/>
+            </Route>
+            <Route exact={true} path={[
+              "/home/admin/user/:userId"]}>
+              <UserReviewList/>
             </Route>
           </BrowserRouter>
         </div>

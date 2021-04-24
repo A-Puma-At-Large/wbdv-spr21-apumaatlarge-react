@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import "./login.css"
 import {Link} from "react-router-dom";
 import userService from "../services/user-service"
-import { useHistory } from "react-router-dom";
+import {useHistory} from 'react-router-dom'
 
 
 
@@ -12,7 +12,7 @@ const Login = (
     const [cachedItem, setCachedItem] = useState({username: "username",
                                                             password : "password",
                                                             role :"user"})
-
+    const history = useHistory()
     const[user, setUser] = useState({})
     return (
         <div className="container-fluid container-login">
@@ -99,7 +99,7 @@ const Login = (
                                             // jump to homepage
                                             alert("Logged in as admin")
                                             // eslint-disable-next-line no-restricted-globals
-                                            history.pushState({},'',"/home/admin")
+                                            history.push("/home/admin")
                                         }
                                     }))
                             }else if (cachedItem.role === "User") {
@@ -113,6 +113,8 @@ const Login = (
                                             alert("Logged in")
                                             userService.findUserByUserName(cachedItem.username).then(user =>
                                             setUser(user))
+
+                                            history.push("/") // remember to modify this route
                                         }
                                     }))
                             }}}>Login</button>
