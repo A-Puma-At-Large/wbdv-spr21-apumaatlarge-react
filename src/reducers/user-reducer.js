@@ -1,6 +1,5 @@
 const initialState = {
-  users: [],
-  user : {},
+  users: []
 }
 
 const userReducer = (prevState= initialState, action) => {
@@ -18,6 +17,7 @@ const userReducer = (prevState= initialState, action) => {
           action.user
         ]
       }
+
     case "FIND_USER_BY_USERNAME":
       return {
         ...prevState,

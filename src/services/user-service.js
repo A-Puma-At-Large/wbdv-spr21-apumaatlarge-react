@@ -29,7 +29,8 @@ const findUserByUserName = (username) => fetch(`${USER_URL}/username/${username}
     return response.json()
     })
 
-const findAllUsers = () => fetch(FIND_ALL_USER).then(response => response.json())
+const findAllUsers = () => {
+    return fetch(FIND_ALL_USER).then(response => response.json())}
 
 const createUser = (user) =>
     fetch(USER_URL, {
@@ -54,8 +55,11 @@ const updateUser = (user) =>
 const deleteUser = (userId) =>
     fetch(`${USER_URL}/${userId}`, {method: 'DELETE'}).then(response => response.json())
 
-export default {
+// eslint-disable-next-line import/no-anonymous-default-export
+const apis = {
   authenticateUser, findUserByUserName,
   findAllUsers, createUser,
   updateUser, deleteUser, authenticateAdmin
 }
+
+export default apis

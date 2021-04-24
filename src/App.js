@@ -13,11 +13,15 @@ import Register from "./components/register";
 import UserReviewList from "./components/review-list/user-review-list";
 import ArtworkReviewList from "./components/review-list/artwork-review-list";
 import reviewReducer from "./reducers/review-reducer";
+import userReducer from "./reducers/user-reducer";
+import AdminHomepage from "./components/user-table/admin-homepage";
 
 
 
-const reducer = combineReducers({artworkReducer: artworkReducer,
-  reviewReducer: reviewReducer
+const reducer = combineReducers({
+  artworkReducer: artworkReducer,
+  reviewReducer: reviewReducer,
+  userReducer : userReducer
 })
 
 const store = createStore(reducer)
@@ -49,8 +53,10 @@ function App() {
             <Route exact={true} path={["/:userId/artworks/:artworkId/artworkReviews"]}>
               <ArtworkReviewList />
             </Route>
+            <Route exact={true} path={["/home/admin"]}>
+              <AdminHomepage/>
+            </Route>
           </BrowserRouter>
-
         </div>
       </Provider>
   );

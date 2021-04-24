@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {connect} from "react-redux";
 import {Link, useParams} from "react-router-dom";
-import reviewService from "../services/review-service";
-import artworkService from "../services/artwork-service";
+import reviewService from "../../services/review-service";
 
 const ArtworkReviewList = ({
   userId,

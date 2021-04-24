@@ -2,14 +2,13 @@ import React, {useState} from 'react'
 import "./login.css"
 import {Link} from "react-router-dom";
 import userService from "../services/user-service"
-import {connect} from "react-redux";
+import { useHistory } from "react-router-dom";
 
 
 
 
 const Login = (
     {}) => {
-
     const [cachedItem, setCachedItem] = useState({username: "username",
                                                             password : "password",
                                                             role :"user"})
@@ -99,6 +98,8 @@ const Login = (
                                         } else {
                                             // jump to homepage
                                             alert("Logged in as admin")
+                                            // eslint-disable-next-line no-restricted-globals
+                                            history.pushState({},'',"/home/admin")
                                         }
                                     }))
                             }else if (cachedItem.role === "User") {
@@ -131,20 +132,4 @@ const Login = (
 }
 
 
-const stpm = (state) => {
-    return {
-    }
-}
-const dtpm = (dispatch) => {
-    return {
-        findUserByUserName: (username) => {
-            userService.findUserByUserName(username)
-                .then(user => dispatch({
-                    type: "FIND_USER_BY_USERNAME",
-                    user: user
-                }))
-        }
-    }
-}
-
-export default connect(stpm, dtpm)(Login)
+export default Login
