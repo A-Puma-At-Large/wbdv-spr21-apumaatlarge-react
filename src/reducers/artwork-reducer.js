@@ -3,7 +3,8 @@ const initialState = {
   artworksWithKeywordComplete:[],
   popularArtworks:[],
   theArtwork: {},
-  theImage: ""
+  theImage: "",
+  artworkTitles: []
 }
 
 const artworkReducer = (prevState= initialState, action) => {
@@ -32,6 +33,11 @@ const artworkReducer = (prevState= initialState, action) => {
       return {
         ...prevState,
         theImage: action.theImage
+      }
+    case "FIND_ARTWORK_TITLES_WITH_REVIEWS":
+      return {
+        ...prevState,
+        artworkTitles: action.artworkTitles
       }
     default:
       return prevState

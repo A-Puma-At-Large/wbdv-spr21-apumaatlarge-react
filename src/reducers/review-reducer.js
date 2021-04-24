@@ -1,26 +1,27 @@
 const initialState = {
   theReview: null,
   reviews: [],
+  userFirstNames:[]
 }
 
 const reviewReducer = (prevState= initialState, action) => {
   switch (action.type) {
-    case "FIND_REVEIW_BY_ID":
+    case "FIND_REVIEW_BY_ID":
       return {
         ...prevState,
         theReview: action.theReview
       }
-    case "FIND_REVEIWS_FOR_USER":
+    case "FIND_REVIEW_FOR_USER":
       return {
         ...prevState,
-        reviews: action.reveiwsForUser,
+        reviews: action.reviewsForUser,
       }
     case "FIND_REVIEWS_FOR_ARTWORK":
       return {
         ...prevState,
         reviews: action.reviewsForArtwork
       }
-    case "CREATE_REVEIW":
+    case "CREATE_REVIEW":
       return {
         ...prevState,
         reviews: [
@@ -42,8 +43,14 @@ const reviewReducer = (prevState= initialState, action) => {
     case "DELETE_REVIEW":
       return {
         ...prevState,
-        reveiws: prevState.reviews.filter(review => review.id !== action.reviewToDelete.id)
+        reviews: prevState.reviews.filter(review => review.id !== action.reviewToDelete.id)
       }
+    case "FIND_USER_FIRST_NAMES_WITH_REVIEWS":
+      return {
+        ...prevState,
+        userFirstNames: action.userFirstNames
+      }
+
     default:
       return prevState
   }

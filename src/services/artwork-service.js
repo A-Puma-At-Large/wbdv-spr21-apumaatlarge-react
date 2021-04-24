@@ -31,6 +31,22 @@ const findCompleteArtworks = (artworksInfo) => {
   return promise
 }
 
+const findArtworkTitlesWithReviews = (reviews) => {
+  let artworkTitles = []
+  for (let i = 0; i < reviews.length; i++) {
+    let id = reviews[i].artworkId
+    findArtworkById(id).then(actualArtwork => {
+      artworkTitles.push(actualArtwork.data.title)
+    })
+  }
+  let promise = new Promise((resolve, reject) => {
+    setTimeout(function() {
+      resolve(artworkTitles)
+    }, 250)
+  })
+  return promise
+}
+
 export default {
-  findArtworkById, findArtworksByKeyword, findPaginatedArtworks, findArtworkImageByImageId, findCompleteArtworks
+  findArtworkById, findArtworksByKeyword, findPaginatedArtworks, findArtworkImageByImageId, findCompleteArtworks, findArtworkTitlesWithReviews
 }

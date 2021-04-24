@@ -10,10 +10,15 @@ import artworkReducer from "./reducers/artwork-reducer";
 import ArtworkList from "./components/artwork-list";
 import Login from "./components/login";
 import Register from "./components/register";
+import UserReviewList from "./components/review-list/user-review-list";
+import ArtworkReviewList from "./components/review-list/artwork-review-list";
+import reviewReducer from "./reducers/review-reducer";
 
 
 
-const reducer = combineReducers({artworkReducer: artworkReducer})
+const reducer = combineReducers({artworkReducer: artworkReducer,
+  reviewReducer: reviewReducer
+})
 
 const store = createStore(reducer)
 
@@ -37,6 +42,12 @@ function App() {
             </Route>
             <Route exact={true} path={["/artworks/:artworkId"]}>
               <ArtworkDetails />
+            </Route>
+            <Route exact={true} path={["/:userId/artworks/:artworkId/userReviews"]}>
+              <UserReviewList />
+            </Route>
+            <Route exact={true} path={["/:userId/artworks/:artworkId/artworkReviews"]}>
+              <ArtworkReviewList />
             </Route>
           </BrowserRouter>
 
