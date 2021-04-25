@@ -7,7 +7,7 @@ import {useParams} from "react-router-dom";
 import Search from "./search";
 
 const ArtworkList = ({artworks=[],completeArtworks, findArtworksWithKeyword, findCompleteArtworksWithKeyword}) => {
-  const {keyword} = useParams();
+  const {userId,keyword} = useParams();
 
   useEffect(() => {
     findArtworksWithKeyword(keyword)
@@ -16,6 +16,7 @@ const ArtworkList = ({artworks=[],completeArtworks, findArtworksWithKeyword, fin
     findCompleteArtworksWithKeyword(artworks)
     console.log(artworks)
     console.log(completeArtworks)
+    console.log(userId)
   }, [keyword, artworks])
   return (
       <div className={"container-fluid"}>

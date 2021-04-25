@@ -29,6 +29,10 @@ const findUserByUserName = (username) => fetch(`${USER_URL}/username/${username}
     return response.json()
     })
 
+const findUserById = (userId) => fetch(`${USER_URL}/${userId}`).then(response => {
+  return response.json()
+})
+
 const findAllUsers = () => {
     return fetch(FIND_ALL_USER).then(response => response.json())}
 
@@ -62,7 +66,8 @@ const deleteUser = (userId) =>
 const apis = {
   authenticateUser, findUserByUserName,
   findAllUsers, createUser,
-  updateUser, deleteUser, authenticateAdmin
+  updateUser, deleteUser, authenticateAdmin,
+  findUserById
 }
 
 export default apis
