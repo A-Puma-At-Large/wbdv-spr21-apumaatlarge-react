@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import "./login.css"
 import {Link} from "react-router-dom";
 import userService from "../services/user-service"
@@ -13,7 +13,15 @@ const Login = (
                                                             password : "password",
                                                             role :"user"})
     const history = useHistory()
-    const[user, setUser] = useState({})
+    const[currentUser, setUser] = useState({
+    })
+    const updateUser= (username) => {
+      userService.findUserByUserName(username).then((user) => setUser(user)
+      )
+    }
+    useEffect(() => {
+      updateUser();
+    }, []);
     return (
         <div className="container-fluid container-login">
 
@@ -111,10 +119,12 @@ const Login = (
                                         } else{
                                             //jump to homepage
                                             alert("Logged in")
-                                            userService.findUserByUserName(cachedItem.username).then(user =>
-                                            setUser(user))
+                                            console.log(cachedItem.username)
+                                            console.log(111)
+                                            userService.findUserByUserName(cachedItem.username).then(user => history.push(`/user/${user.id}/homepage`))
+                                            // const userId = currentUser.id
 
-                                            history.push("/") // remember to modify this route
+                                            // history.push(`/user/${cachedItem.username}/profile`) // remember to modify this route
                                         }
                                     }))
                             }}}>Login</button>

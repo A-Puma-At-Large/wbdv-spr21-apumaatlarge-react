@@ -15,6 +15,11 @@ import ArtworkReviewList from "./components/review-list/artwork-review-list";
 import reviewReducer from "./reducers/review-reducer";
 import userReducer from "./reducers/user-reducer";
 import AdminHomepage from "./components/user-table/admin-homepage";
+import UserHomepage from "./components/user-table/user-homepage";
+import PopularArtworks from "./components/popular-artworks";
+import UserProfile from "./components/user-table/user-profile";
+import UserFavorites from "./components/user-table/user-favorites";
+import UserReviews from "./components/user-table/user-reviews";
 
 
 
@@ -47,11 +52,14 @@ function App() {
             <Route exact={true} path={["/artworks/:artworkId"]}>
               <ArtworkDetails />
             </Route>
+            <Route exact={true} path={["/:userId/artworks/:artworkId"]}>
+              <ArtworkDetails/>
+            </Route>
             <Route exact={true} path={["/:userId/artworks/:artworkId/userReviews"]}>
               <UserReviewList />
             </Route>
             <Route exact={true} path={["/:userId/artworks/:artworkId/artworkReviews"]}>
-              <ArtworkReviewList />
+              <ArtworkReviewList/>
             </Route>
             <Route exact={true} path={[
                 "/home/admin",]}>
@@ -60,6 +68,23 @@ function App() {
             <Route exact={true} path={[
               "/home/admin/user/:userId"]}>
               <UserReviewList/>
+            </Route>
+            <Route exact={true} path={[
+              "/user/:userId/homepage",]}>
+              <UserHomepage/>
+            </Route>
+            <Route exact={true} path={[
+              "/user/:userId/profile",]}>
+              <UserProfile/>
+            </Route>
+            <Route exact={true} path={["/user/:userId/search/:keyword"]}>
+              <ArtworkList />
+            </Route>
+            <Route exact={true} path={["/user/:userId/favorites"]}>
+              <UserFavorites/>
+            </Route>
+            <Route exact={true} path={["/user/:userId/reviews"]}>
+              <UserReviews/>
             </Route>
           </BrowserRouter>
         </div>

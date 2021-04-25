@@ -47,6 +47,7 @@ const findUserFirstNamesWithReviews = (reviews) => {
   return promise
 }
 
+
 export default {
   findReviewById, findReviewsForUser, findReviewsForArtwork, createReview, updateReview, deleteReview,findUserFirstNamesWithReviews
 }

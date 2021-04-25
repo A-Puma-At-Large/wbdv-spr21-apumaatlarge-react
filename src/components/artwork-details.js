@@ -2,9 +2,14 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import {connect} from "react-redux";
 import artworkService from "../services/artwork-service";
+import reviewService from "../services/review-service"
 
 const ArtworkDetails = ({theArtwork, findArtworkById}) => {
-  const {artworkId} = useParams();
+  const {userId,artworkId} = useParams();
+  const [artworkReviews, setArtworkReviews] = useState([])
+  useEffect(() => {
+    reviewService.findReviewsForArtwork(artworkId).then(a => setArtworkReviews([...a]))
+  },[])
 
 
   useEffect(() => {
@@ -54,6 +59,32 @@ const ArtworkDetails = ({theArtwork, findArtworkById}) => {
         <div className={"row"}>
           {theArtwork.credit_line}
         </div>
+        {userId !== undefined && userId !== "undefined" &&
+        <div>
+          <h2>Reviews</h2>
+          <table className={"table"}>
+            <thead>
+            <th>
+              userId
+            </th>
+            <th>
+              comment
+            </th>
+            </thead>
+            <tbody>
+            {
+              artworkReviews.map((r) => {return(
+
+                  <tr>
+                    <td>{r.userId}</td>
+                    <td>{r.comment}</td>
+                  </tr>
+              )})
+            }
+            </tbody>
+          </table>
+        </div>}
+
 
       </div>
   )
