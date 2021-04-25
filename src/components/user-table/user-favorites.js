@@ -46,7 +46,7 @@ const UserFavorites = () => {
             {userFavorites.favorites.map(
               (f) => { return (
                   <tr className={"d-flex"}>
-                    <th ><Link to={`/artworks/${f.idOfArtwork}`}>{f.idOfArtwork}</Link></th>
+                    <th ><Link to={`/${userId}/artworks/${f.idOfArtwork}`}>{f.idOfArtwork}</Link></th>
                     <th className={"float-right"}>
                       <button className="fas fa-trash float-right" onClick={() =>
                       {
