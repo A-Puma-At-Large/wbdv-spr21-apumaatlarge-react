@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {Link} from "react-router-dom";
 
-const EditableItem = (
+const UserRow = (
     {   to="/",
         deleteUser,
         updateUser,
@@ -97,4 +97,4 @@ const EditableItem = (
     )
 }
 
-export default EditableItem
+export default UserRow

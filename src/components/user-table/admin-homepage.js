@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
 import userService from "../../services/user-service"
 import "./admin-homepage.css"
-import EditableItem from "./editable-item"
+import UserRow from "./user-row"
 import {Link,useParams} from 'react-router-dom'
 
 const AdminHomepage = (
@@ -17,7 +17,7 @@ const AdminHomepage = (
     useEffect(() => {findAllUsers()}, [findAllUsers])
 
     return(
-    <div className={"container-fluid"}>
+    <div className={"container-fluid "}>
         <nav className="navbar navbar-light bg-light">
             <div className={"row"}>
                 <div className={"col"}>
@@ -31,6 +31,7 @@ const AdminHomepage = (
                 </div>
             </div>
         </nav>
+        <div className={"container-homepage"}>
         <table className="table">
             <thead className="table-primary">
             <tr className={"row col-12 mx-auto"}>
@@ -48,7 +49,7 @@ const AdminHomepage = (
             <tbody>
 
             {users.map(user =>
-                    <EditableItem
+                    <UserRow
                         updateUser={updateUser}
                         deleteItem={deleteUser}
                         to={`/home/admin/user/${user.id}`}
@@ -57,6 +58,7 @@ const AdminHomepage = (
             )}
             </tbody>
         </table>
+        </div>
     </div>)}
 
 const stpm = (state) => {

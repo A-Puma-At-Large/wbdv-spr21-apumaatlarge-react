@@ -1,0 +1,21 @@
+body {
+    font-family: "Lato", sans-serif;
+}
+
+.profile-card {
+    position: center;
+    padding-top: 3%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+
+.artwork-heading{
+    padding-top: 3%;
+    padding-left: 2%;
+}
+
+
+.title-row{
+    padding-left: 15%;
+}

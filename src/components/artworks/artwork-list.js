@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import {connect} from "react-redux"
-import artworkService from "../services/artwork-service"
+import artworkService from "../../services/artwork-service"
 import ArtworkCard from "./artwork-card";
 import { withRouter } from "react-router";
 import {useParams} from "react-router-dom";
-import Search from "./search";
+import Search from "../home/search";
 
 const ArtworkList = ({artworks=[],completeArtworks, findArtworksWithKeyword, findCompleteArtworksWithKeyword}) => {
   const {userId,keyword} = useParams();

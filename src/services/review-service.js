@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8080/api"
+const BASE_URL = "https://a-puma-at-large-server-java.herokuapp.com/api"
 const REVIEW_BASE_URL = BASE_URL + "/reviews"
 const USER_BASE_URL = BASE_URL + "/users"
 

@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react'
 import {connect} from "react-redux"
-import artworkService from "../services/artwork-service"
+import artworkService from "../../services/artwork-service"
 import ArtworkCard from "./artwork-card";
+import "../user-table/user-profile.css"
 
 
 const PopularArtworks = ({page, limit, artworks=[], findPaginatedArtworks}) => {
@@ -10,10 +11,10 @@ const PopularArtworks = ({page, limit, artworks=[], findPaginatedArtworks}) => {
   }, [page, limit])
   return (
       <div className={"container-fluid"}>
-        <div className={"row"}>
-          <h2>
+        <div className={"row artwork-heading"}>
+          <h4>
             Popular Artworks
-          </h2>
+          </h4>
         </div>
         <div className={"row mt-4"}>
           {artworks.map((artwork) => <ArtworkCard artworkId={artwork.id}

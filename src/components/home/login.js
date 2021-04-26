@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import "./login.css"
 import {Link} from "react-router-dom";
-import userService from "../services/user-service"
+import userService from "../../services/user-service"
 import {useHistory} from 'react-router-dom'
 
 
@@ -104,10 +104,7 @@ const Login = (
                                         if (isValid === 0){
                                             alert("Admin Login, please check your username or password")
                                         } else {
-                                            // jump to homepage
-                                            alert("Logged in as admin")
-                                            // eslint-disable-next-line no-restricted-globals
-                                            history.push("/home/admin")
+                                           history.push("/home/admin")
                                         }
                                     }))
                             }else if (cachedItem.role === "User") {
@@ -117,14 +114,10 @@ const Login = (
                                         if (isValid === 0) {
                                             alert("The password or the Username is not correct!")
                                         } else{
-                                            //jump to homepage
-                                            alert("Logged in")
                                             console.log(cachedItem.username)
                                             console.log(111)
                                             userService.findUserByUserName(cachedItem.username).then(user => history.push(`/user/${user.id}/homepage`))
-                                            // const userId = currentUser.id
 
-                                            // history.push(`/user/${cachedItem.username}/profile`) // remember to modify this route
                                         }
                                     }))
                             }}}>Login</button>

@@ -14,19 +14,13 @@ const Search = () => {
                    value={keyword}/>
           </div>
           <div className={"col-2"}>
-            <button>
+            <button className={"btn btn-outline-info search-link"}>
               <Link to={`/search/${keyword}`}>
                 Search
               </Link>
             </button>
           </div>
 
-
-          {/*<ul>*/}
-          {/*  <li>*/}
-          {/*    <ArtworkDetails />*/}
-          {/*  </li>*/}
-          {/*</ul>*/}
         </div>
   )
 }

@@ -1,7 +1,7 @@
-const USER_LOGIN = "http://localhost:8080/api/login/user"
-const ADMIN_LOGIN = "http://localhost:8080/api/login/admin"
-const FIND_ALL_USER = "http://localhost:8080/api/find/users"
-const USER_URL = "http://localhost:8080/api/users"
+const USER_LOGIN = "https://a-puma-at-large-server-java.herokuapp.com/api/login/user"
+const ADMIN_LOGIN = "https://a-puma-at-large-server-java.herokuapp.com/api/login/admin"
+const FIND_ALL_USER = "https://a-puma-at-large-server-java.herokuapp.com/api/find/users"
+const USER_URL = "https://a-puma-at-large-server-java.herokuapp.com/api/users"
 
 const authenticateUser = (user) => fetch(USER_LOGIN, {
     method: 'POST',

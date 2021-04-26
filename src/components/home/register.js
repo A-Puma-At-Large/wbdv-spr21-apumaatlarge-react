@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import "./login.css"
 import {Link, useHistory} from "react-router-dom";
 import {connect} from 'react-redux';
-import userService from "../services/user-service"
+import userService from "../../services/user-service"
 import {wrapMapToPropsConstant} from "react-redux/lib/connect/wrapMapToProps";
 
 const Register = (
@@ -96,7 +96,7 @@ const Register = (
                                 // console.log(newUser, "test")
                                 createUser(newUser)
 
-                               }}>Login</button>
+                               }}>Register</button>
                     <div className="row">
                         <Link to="/login" className="col">
                             Login
