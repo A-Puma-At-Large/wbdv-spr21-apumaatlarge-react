@@ -55,8 +55,8 @@ function App() {
             <Route exact={true} path={["/:userId/artworks/:artworkId"]}>
               <ArtworkDetails/>
             </Route>
-            <Route exact={true} path={["/:userId/artworks/:artworkId/userReviews"]}>
-              <UserReviewList />
+            <Route exact={true} path={["/home/admin/user/:userId"]}>
+              <UserReviews />
             </Route>
             <Route exact={true} path={["/:userId/artworks/:artworkId/artworkReviews"]}>
               <ArtworkReviewList/>
@@ -65,10 +65,10 @@ function App() {
                 "/home/admin",]}>
               <AdminHomepage/>
             </Route>
-            <Route exact={true} path={[
-              "/home/admin/user/:userId"]}>
-              <UserReviewList/>
-            </Route>
+            {/*<Route exact={true} path={[*/}
+            {/*  "/home/admin/user/:userId"]}>*/}
+            {/*  <UserReviewList/>*/}
+            {/*</Route>*/}
             <Route exact={true} path={[
               "/user/:userId/homepage",]}>
               <UserHomepage/>

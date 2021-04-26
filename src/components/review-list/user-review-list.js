@@ -5,7 +5,6 @@ import reviewService from '../../services/review-service'
 import artworkService from "../../services/artwork-service";
 
 const UserReviewList = ({
-  userId,
   artworkId,
   reviews,
   artworkTitles,
@@ -17,52 +16,38 @@ const UserReviewList = ({
   findReviewsForArtwork,
 }) => {
 
-  useEffect(() => {
-    findReviewsForUser(userId)
+  const {userId} = useParams()
+  const [userReviews, setUserReviews] = useState([])
+  useEffect(()=> {
+    reviewService.findReviewsForUser(userId).then(r => {
+      setUserReviews([...r])
+    })
   }, [userId])
-  useEffect(() => {
-    findArtworkTitlesWithReviews(reviews)
-  }, [userId, reviews])
+  // useEffect(() => {
+  //   findArtworkTitlesWithReviews(userReviews)
+  // }, [userId, userReviews])
 
   const [reviewContent, setReviewContent] = useState("")
   const [editing, setEditing] = useState(false)
 
   return (<div className={"container-fluid"}>
     <br/>
-    <div className={"row"}>
-      <textarea className={"form-control"}
-                value={reviewContent}
-                placeholder={"Add your comment here."}
-                onChange={(e) => {
-                  setReviewContent(e.target.value)
-                }}>
-      </textarea>
-    </div>
-    <br/>
-    <div className={'row'}>
-      <button className={"btn btn-primary"}
-              onClick={() => createReview(userId, artworkId, reviewContent)}>
-        Submit
-      </button>
-    </div>
 
-    <br/>
-
-    <h3>Your reviews:</h3>
+    <h3>User's reviews:</h3>
 
     <table className="table">
       <thead>
         <tr className={"d-flex"}>
-          <th className={"col-lg-2 text-center"}>Artwork Title</th>
-          <th className={"col-lg-10 text-center"}>Comments</th>
+          <th className={"col-lg-2 text-left"}>Artwork Id</th>
+          <th className={"col-lg-10 text-left"}>Comments</th>
         </tr>
       </thead>
       <tbody>
-        {reviews.map((review, idx) => {
+        {userReviews.map((review, idx) => {
           return (<tr className={"d-flex"}>
             <td className={"col-lg-2 text-left"}>
               <Link to={`/artworks/${review.artworkId}`}>
-                {artworkTitles[idx]}
+                {review.artworkId}
               </Link>
             </td>
             <td className={"col-lg-9 text-left"}>
