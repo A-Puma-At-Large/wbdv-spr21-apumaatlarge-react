@@ -26,7 +26,8 @@ const authenticateAdmin = (admin) => fetch(ADMIN_LOGIN,{
 
 
 const findUserByUserName = (username) => fetch(`${USER_URL}/username/${username}`).then(response => {
-    return response.json()
+
+  return response.json()
     })
 
 const findUserById = (userId) => fetch(`${USER_URL}/${userId}`).then(response => {

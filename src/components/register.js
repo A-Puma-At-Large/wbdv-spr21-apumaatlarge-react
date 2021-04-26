@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
 import "./login.css"
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import {connect} from 'react-redux';
 import userService from "../services/user-service"
+import {wrapMapToPropsConstant} from "react-redux/lib/connect/wrapMapToProps";
 
 const Register = (
     {   createUser,
@@ -13,7 +14,7 @@ const Register = (
         {username: "username",
         password : "password",
         role :"user"})
-
+  const history = useHistory()
     return (
         <div className="container-fluid container-login">
 
@@ -91,8 +92,10 @@ const Register = (
                             className="btn btn-primary btn-block"
                             onClick={() => {
                                 let newUser = {...cachedItem, role: "User"}
-                                console.log(newUser)
+                                userService.findUserByUserName(cachedItem.username)
+                                // console.log(newUser, "test")
                                 createUser(newUser)
+
                                }}>Login</button>
                     <div className="row">
                         <Link to="/login" className="col">
@@ -118,7 +121,16 @@ const dtpm = (dispatch) => {
                 .then(user => dispatch({
                     type: "CREATE_USER",
                     user: user
-                }))
+                })).then(a => {
+                  console.log(a)
+                  if (a.user["Message:"] === "The user name has existed") {
+                    alert("Username existed! Please change your username")
+                  } else if(a.user.status === 500) {
+                    alert("Internal Error 500! Please check your email format.")
+                  } else {
+                    alert("Create user successfully! You can login to your account right now")
+                  }
+            })
         },
 
         deleteUser: (user) =>
