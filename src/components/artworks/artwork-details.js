@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {connect} from "react-redux";
 import artworkService from "../../services/artwork-service";
 import reviewService from "../../services/review-service"
@@ -101,7 +101,7 @@ const ArtworkDetails = ({theArtwork, findArtworkById}) => {
               artworkReviews.map((r) => {return(
 
                   <tr>
-                    <td>{r.userId}</td>
+                      <td><Link to={`/user/${r.userId}/reviews`}>{r.userId}</Link></td>
                     <td>{r.comment}</td>
                   </tr>
               )})
